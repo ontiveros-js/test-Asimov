@@ -1,39 +1,43 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 const valueDefoult = {
   nombre: "",
   apellido: "",
   correo: "",
-  text: "",
   fecha: "",
   hora: "",
 };
 
-const Modal = ({ date, hourModal, setModal, modal, db }) => {
+const Modal = ({ date, hourModal, setModal, modal, fetching }) => {
   const [input, setInput] = useState(valueDefoult);
 
   let dateString = date.toLocaleDateString();
 
-  const clickS = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
-    db.push(input);
+    const resp = await axios.post(
+      "http://localhost:3001/api/appointment",
+      input
+    );
+    fetching();
     setModal(!modal);
-    console.log(db);
   };
 
   return (
     <div className="modal">
-      <form onSubmit={clickS}>
+      <form onSubmit={submit}>
         <p style={{ background: "white" }}>appointment to {dateString}</p>
         <p style={{ background: "white" }}>hour: {hourModal}</p>
         <input
           type="text"
+          required
           placeholder="nombre"
           name="nombre"
           onChange={(e) =>
             setInput({
               ...input,
-              hourModal,
+              hora: hourModal,
               fecha: dateString,
               [e.target.name]: e.target.value,
             })
@@ -41,6 +45,7 @@ const Modal = ({ date, hourModal, setModal, modal, db }) => {
         />
         <input
           type="text"
+          required
           placeholder="apellido"
           name="apellido"
           onChange={(e) =>
@@ -51,7 +56,8 @@ const Modal = ({ date, hourModal, setModal, modal, db }) => {
           }
         />
         <input
-          type="text"
+          type="email"
+          required
           placeholder="correo"
           name="correo"
           onChange={(e) =>
@@ -65,24 +71,6 @@ const Modal = ({ date, hourModal, setModal, modal, db }) => {
         <button onClick={() => setModal(!modal)}>cerrar</button>
       </form>
     </div>
-    //
-    //           <li>9:00 - 10:00</li>
-    //           <input
-    //             type="text"
-    //             name="9:00 - 10:00"
-    //             value={input.text}
-    //             onChange={(e) =>
-    //               setInput({
-    //                 ...input,
-    //                 text: e.target.value,
-    //                 fecha: date.toLocaleDateString(),
-    //                 hora: e.target.name,
-    //               })
-    //             }
-    //           />
-    //           <h6>{input.text}</h6>
-
-    //           <button>eliminar</button>
   );
 };
 

@@ -12,6 +12,7 @@ const Creado = ({ datos, hour, myDisabled }) => {
 
   return (
     <div className="accordion-item">
+      <span></span>
       <h2 className="accordion-header" id={`heading${key}`}>
         <button
           className={

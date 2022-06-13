@@ -3,17 +3,21 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Hours from "./components/Hours";
 import { format } from "timeago.js";
+import axios from "axios";
 
 function App() {
   const [startDate, setStartDate] = useState(new Date());
   const [myDisabled, setMyDisabled] = useState(false);
   const [announcement, setAnnouncement] = useState("");
+  const [db, setDb] = useState([]);
 
-  useEffect(() => {
-    let dateCompare = format(startDate);
+  const verification = (date) => {
+    let dateCompare = format(date);
     if (
       dateCompare.includes("day ago") ||
       dateCompare.includes("days ago") ||
+      dateCompare.includes("week ago") ||
+      dateCompare.includes("weeks ago") ||
       dateCompare.includes("month ago") ||
       dateCompare.includes("months ago") ||
       dateCompare.includes("year ago") ||
@@ -22,7 +26,7 @@ function App() {
       setAnnouncement("You can not book an appointment in past days or edit");
       setMyDisabled(true);
     } else {
-      if (startDate.getUTCDay() === 0 || startDate.getUTCDay() === 6) {
+      if (date.getDay() === 0 || date.getDay() === 6) {
         setMyDisabled(true);
         setAnnouncement(
           "On weekends death does not work, you can go play whith sharks"
@@ -32,10 +36,27 @@ function App() {
         setAnnouncement("");
       }
     }
+  };
+
+  const fetching = async () => {
+    const resp = await axios("http://localhost:3001/api/appointment");
+    console.log(resp);
+    if (resp.data.length) {
+      setDb(resp.data);
+      console.log(db);
+    } else {
+      setDb([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+    }
+  };
+  console.log(db);
+
+  useEffect(() => {
+    verification(startDate);
+    fetching();
   }, [startDate]);
 
-  const onSelect = (d) => {
-    console.log(d.toLocaleDateString());
+  const onSelect = (date) => {
+    verification(date);
   };
 
   return (
@@ -54,7 +75,13 @@ function App() {
           </div>
         </div>
         <div className="col md-8">
-          <Hours date={startDate} myDisabled={myDisabled} />
+          <Hours
+            date={startDate}
+            myDisabled={myDisabled}
+            fetching={fetching}
+            db={db}
+            setDb={setDb}
+          />
         </div>
       </div>
     </div>
