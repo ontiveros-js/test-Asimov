@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "e4b375d50637a2f86ba2",
+    "revision": "c6077b1854fa2c95675c",
     "url": "/test-Asimov/static/css/main.c15cf8c4.chunk.css"
   },
   {
-    "revision": "e4b375d50637a2f86ba2",
-    "url": "/test-Asimov/static/js/main.e4b375d5.chunk.js"
+    "revision": "c6077b1854fa2c95675c",
+    "url": "/test-Asimov/static/js/main.c6077b18.chunk.js"
   },
   {
     "revision": "06ed7020fbf189b562b7",
@@ -24,7 +24,7 @@ self.__precacheManifest = [
     "url": "/test-Asimov/static/js/runtime~main.e1530fcc.js"
   },
   {
-    "revision": "b079f887fecdba068701c55169c7e790",
+    "revision": "f9a5c8c9245e1b4e03b2401bfeb71385",
     "url": "/test-Asimov/index.html"
   }
 ];

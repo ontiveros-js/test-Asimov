@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/test-Asimov/precache-manifest.7f02d17e2a74c9dd17d108f6255a72eb.js"
+  "/test-Asimov/precache-manifest.3f24ea7ccc4a0e7cb533ab7c2180933a.js"
 );
 
 workbox.clientsClaim();
