@@ -1,25 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Creado from "./Creado";
 import Modal from "./Modal";
 import NoCreado from "./NoCreado";
+import "react-toastify/dist/ReactToastify.css";
 
-// const db = [
-//   {
-//     apellido: "mazano",
-//     correo: "damanz101@el.com",
-//     nombre: "daniel",
-//     fecha: "10-06-2022",
-//     hora: "10:00 - 11:00",
-//   },
-// ];
-const Hours = ({ date, myDisabled, fetching, db, setDb }) => {
+const Hours = ({ date, myDisabled, fetching, db }) => {
   const [hourModal, setHourModal] = useState("");
   const [modal, setModal] = useState(false);
-  let children;
 
-  const dateString = date.toLocaleDateString();
-
-  const frame = [
+  let frame = [
     "9:00 - 10:00",
     "10:00 - 11:00",
     "11:00 - 12:00",
@@ -31,101 +20,36 @@ const Hours = ({ date, myDisabled, fetching, db, setDb }) => {
     "5:00 - 6:00",
   ];
 
-  // useEffect(() => {
-  //   fetching();
-  // }, []);
-
-  // useEffect(() => {
-  //   for (const oneDb of db) {
-  //     // console.log(db);
-  //     if (!db) setDb(frame);
-  //     children = frame.map((el) => {
-  //       // console.log(el === oneDb.hora && dateString === oneDb.fecha);
-  //       if (el === oneDb.hora && dateString === oneDb.fecha) {
-  //         return (
-  //           <div key={el}>
-  //             <Creado datos={oneDb} hour={el} myDisabled={myDisabled} />
-  //           </div>
-  //         );
-  //       } else {
-  //         return (
-  //           <div key={el}>
-  //             <NoCreado
-  //               myDisabled={myDisabled}
-  //               hour={el}
-  //               modal={modal}
-  //               setModal={setModal}
-  //               setHourModal={setHourModal}
-  //             />
-  //           </div>
-  //         );
-  //       }
-  //     });
-  //   }
-  // }, [db, date]);
-
-  /*
-   if (el === oneDb.hora && dateString === oneDb.fecha) {
-        return (
-          <div key={el}>
-            <Creado datos={oneDb} hour={el} myDisabled={myDisabled} />
-          </div>
-        );
-      } else {
-        return (
-          <div key={el}>
-            <NoCreado
-              myDisabled={myDisabled}
-              hour={el}
-              modal={modal}
-              setModal={setModal}
-              setHourModal={setHourModal}
-            />
-          </div>
-        );
-      }
-   */
-
-  let a = <div></div>;
-  console.log(typeof a);
-
-  for (const oneDb of db) {
-    if (!db) {
-      setDb(frame);
-    }
-    frame.forEach((el) => {
-      if (el === oneDb.hora && dateString === oneDb.fecha) {
-        el = (
-          <div key={el}>
-            <Creado datos={oneDb} hour={el} myDisabled={myDisabled} />
-          </div>
-        );
-        return;
-      } else {
-        if (typeof el === "object") {
-          return el;
-        } else {
-          el = (
-            <div key={el}>
-              <NoCreado
-                myDisabled={myDisabled}
-                hour={el}
-                modal={modal}
-                setModal={setModal}
-                setHourModal={setHourModal}
-              />
-            </div>
-          );
-          return;
-        }
-      }
-    });
-  }
-  console.log("conteo");
   return (
     <>
       <div className="accordion" id="accordionExample">
-        {frame}
+        {frame.map((el) => {
+          let match = db.find((ele) => ele.hora === el);
+          if (match) {
+            return (
+              <div key={match.hora}>
+                <Creado
+                  datos={match}
+                  myDisabled={myDisabled}
+                  fetching={fetching}
+                  setModal={setModal}
+                />
+              </div>
+            );
+          } else {
+            return (
+              <div key={el}>
+                <NoCreado
+                  myDisabled={myDisabled}
+                  hour={el}
+                  modal={modal}
+                  setModal={setModal}
+                  setHourModal={setHourModal}
+                />
+              </div>
+            );
+          }
+        })}
       </div>
       {modal && (
         <Modal

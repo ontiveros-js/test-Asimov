@@ -8,7 +8,7 @@ const NoCreado = ({ hour, modal, setModal, setHourModal, myDisabled }) => {
         : hour[0] + hour[1]
       : hour[0];
 
-  const clickB = (e) => {
+  const onClick = () => {
     setHourModal(hour);
     setModal(!modal);
   };
@@ -40,7 +40,8 @@ const NoCreado = ({ hour, modal, setModal, setHourModal, myDisabled }) => {
       >
         <div className="accordion-body">
           <button
-            onClick={clickB}
+            className="btn btn-primary"
+            onClick={onClick}
             type="button"
             disabled={myDisabled ? true : false}
           >

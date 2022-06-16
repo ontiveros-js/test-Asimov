@@ -1,14 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Contexto } from "../Context/Context";
+import axios from "axios";
 
-const Creado = ({ datos, hour, myDisabled }) => {
+const Creado = ({ datos, myDisabled, fetching, setModal }) => {
   const { nombre, apellido, correo } = datos;
+  const { setInput } = useContext(Contexto);
 
   const key =
-    hour[0] === "1"
-      ? hour[1] === ":"
-        ? hour[0] + "a"
-        : hour[0] + hour[1]
-      : hour[0];
+    datos.hora[0] === "1"
+      ? datos.hora[1] === ":"
+        ? datos.hora[0] + "a"
+        : datos.hora[0] + datos.hora[1]
+      : datos.hora[0];
+
+  const onDelete = async () => {
+    await axios.delete("http://localhost:3001/api/appointment/" + datos._id);
+    fetching();
+  };
+
+  const onUpdate = async () => {
+    setModal(true);
+    setInput(datos);
+  };
 
   return (
     <div className="accordion-item">
@@ -24,7 +37,7 @@ const Creado = ({ datos, hour, myDisabled }) => {
           aria-expanded="true"
           aria-controls={`collapse${key}`}
         >
-          {hour}
+          {datos.hora}
           <h6 style={myDisabled ? { color: "gray" } : { color: "red" }}>
             Taken
           </h6>
@@ -41,8 +54,18 @@ const Creado = ({ datos, hour, myDisabled }) => {
             {nombre} {apellido}
           </h5>
           <h5>{correo}</h5>
-          <button disabled={myDisabled ? true : false}>editar</button>
-          <button disabled={myDisabled ? true : false}>eliminar</button>
+          <div className="d-flex justify-content-between">
+            <button
+              className="btn btn-warning"
+              disabled={myDisabled ? true : false}
+              onClick={onUpdate}
+            >
+              editar
+            </button>
+            <button className="btn btn-danger" onClick={onDelete}>
+              eliminar
+            </button>
+          </div>
         </div>
       </div>
     </div>
