@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 const Modal = ({ date, hourModal, setModal, modal, fetching }) => {
   const { input, setInput, valueDefoult } = useContext(Contexto);
 
-  let dateString = date.toLocaleDateString();
+  let dateString = date.toLocaleDateString("es-CL");
 
   const submit = async (e) => {
     e.preventDefault();

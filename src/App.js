@@ -40,9 +40,7 @@ function App() {
     }
   };
 
-  let params = startDate.toLocaleDateString().includes("/")
-    ? startDate.toLocaleDateString().replace(/\//g, "-")
-    : startDate.toLocaleDateString();
+  let params = startDate.toLocaleDateString("es-CL");
 
   const fetching = useCallback(async () => {
     const resp = await axios(
@@ -70,7 +68,7 @@ function App() {
             inline
           />
           <div>
-            <h3>{startDate.toLocaleDateString()}</h3>
+            <h3>{params}</h3>
             <h4 className={announcement && "alert alert-warning"}>
               {announcement}
             </h4>
