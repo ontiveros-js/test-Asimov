@@ -13,12 +13,13 @@ const Modal = ({ date, hourModal, setModal, modal, fetching }) => {
 
     if (input._id) {
       await axios.put(
-        "http://localhost:3001/api/appointment/" + input._id,
+        "https://test-asimov-backend.herokuapp.com/api/appointment/" +
+          input._id,
         input
       );
     } else {
       const resp = await axios.post(
-        "http://localhost:3001/api/appointment",
+        "https://test-asimov-backend.herokuapp.com/api/appointment",
         input
       );
       if (resp.status === 202) {

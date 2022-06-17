@@ -14,7 +14,9 @@ const Creado = ({ datos, myDisabled, fetching, setModal }) => {
       : datos.hora[0];
 
   const onDelete = async () => {
-    await axios.delete("http://localhost:3001/api/appointment/" + datos._id);
+    await axios.delete(
+      "https://test-asimov-backend.herokuapp.com/api/appointment/" + datos._id
+    );
     fetching();
   };
 

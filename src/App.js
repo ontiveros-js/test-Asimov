@@ -45,7 +45,9 @@ function App() {
     : startDate.toLocaleDateString();
 
   const fetching = useCallback(async () => {
-    const resp = await axios("http://localhost:3001/api/appointment/" + params);
+    const resp = await axios(
+      "https://test-asimov-backend.herokuapp.com/api/appointment/" + params
+    );
     if (resp.data.length) {
       setDb(resp.data);
     } else {
