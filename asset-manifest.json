@@ -1,11 +1,12 @@
 {
-  "main.css": "/test-Asimov/static/css/main.c15cf8c4.chunk.css",
-  "main.js": "/test-Asimov/static/js/main.c6077b18.chunk.js",
-  "static/js/1.06ed7020.chunk.js": "/test-Asimov/static/js/1.06ed7020.chunk.js",
-  "static/css/2.ae062910.chunk.css": "/test-Asimov/static/css/2.ae062910.chunk.css",
-  "static/js/2.cc66ca9c.chunk.js": "/test-Asimov/static/js/2.cc66ca9c.chunk.js",
-  "runtime~main.js": "/test-Asimov/static/js/runtime~main.e1530fcc.js",
-  "index.html": "/test-Asimov/index.html",
-  "precache-manifest.3f24ea7ccc4a0e7cb533ab7c2180933a.js": "/test-Asimov/precache-manifest.3f24ea7ccc4a0e7cb533ab7c2180933a.js",
-  "service-worker.js": "/test-Asimov/service-worker.js"
+  "files": {
+    "main.css": "/test-Asimov/static/css/main.9304d99b.css",
+    "main.js": "/test-Asimov/static/js/main.670679dc.js",
+    "static/js/27.fee10c0f.chunk.js": "/test-Asimov/static/js/27.fee10c0f.chunk.js",
+    "index.html": "/test-Asimov/index.html"
+  },
+  "entrypoints": [
+    "static/css/main.9304d99b.css",
+    "static/js/main.670679dc.js"
+  ]
 }
