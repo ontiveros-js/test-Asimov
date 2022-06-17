@@ -58,7 +58,7 @@ const Modal = ({ date, hourModal, setModal, modal, fetching }) => {
                 type="text"
                 value={input.nombre}
                 required
-                placeholder="nombre"
+                placeholder="Name"
                 name="nombre"
                 onChange={(e) =>
                   setInput({
@@ -74,7 +74,7 @@ const Modal = ({ date, hourModal, setModal, modal, fetching }) => {
                 type="text"
                 value={input.apellido}
                 required
-                placeholder="apellido"
+                placeholder="Surname"
                 name="apellido"
                 onChange={(e) =>
                   setInput({
@@ -88,7 +88,7 @@ const Modal = ({ date, hourModal, setModal, modal, fetching }) => {
                 type="email"
                 value={input.correo}
                 required
-                placeholder="correo"
+                placeholder="Email"
                 name="correo"
                 onChange={(e) =>
                   setInput({
